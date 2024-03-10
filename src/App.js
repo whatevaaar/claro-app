@@ -1,6 +1,7 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import ChannelRow from "./components/ChannelRow/ChannelRow";
+import TopBar from "./components/TopBar/TopBar";
 
 function App() {
   const url =
@@ -9,17 +10,21 @@ function App() {
   useEffect(() => {
     const dataFetch = async () => {
       const fetchedData = await (await fetch(url)).json();
+      console.log(fetchedData);
       setData(fetchedData.response.channels);
     };
     dataFetch();
   }, []);
 
   return (
-    <div>
-      {data.map((d) => (
-        <ChannelRow channelData={d} />
-      ))}
-    </div>
+    <>
+      <TopBar />
+      <div>
+        {data.map((d) => (
+          <ChannelRow channelData={d} />
+        ))}
+      </div>
+    </>
   );
 }
 

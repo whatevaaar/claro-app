@@ -1,13 +1,52 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+* {
+  color: #b6b6b6;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: #000;
+}
+
+.topbar-row {
+  display: flex;
+  width: 100%;
+  height: 3rem;
+}
+.channel-row {
+  display: flex;
+  width: 100%;
+  height: 100px;
+}
+
+.channel-header {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 3fr; /* Dividir en dos columnas iguales */
+}
+.channel-wrapper {
+  display: grid;
+  grid-auto-columns: 1fr; /* Las columnas se ajustan automáticamente */
+  grid-auto-flow: column; /* Los elementos fluyen en columnas */
+  flex: 3; /* Esto no es necesario si estás usando display: grid */
+  overflow: hidden;
+  scroll-behavior: smooth;
+}
+
+.channel-logo > img {
+  max-width: 100%;
+  height: auto;
+}
+
+.channel-number {
+  display: flex;
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center;
+}
+.show-card {
+  border: solid;
+  border-color: gainsboro;
 }

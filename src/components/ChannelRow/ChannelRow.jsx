@@ -1,15 +1,20 @@
 import ShowCard from "../ShowCard/ShowCard";
 
 const ChannelRow = ({ channelData }) => {
-    const { name, id, image, events } = channelData;
-    return <article id={id}>
-        <div>
-            <img src={image} alt={name} />
+    const { name, id, image, events, number } = channelData;
+    return <article id={id} className="channel-row">
+        <div className="channel-header">
+            <div className="channel-number" >
+                <p>{number}</p>
+            </div>
+            <div className="channel-logo" >
+                <img src={image} alt={name} />
+            </div>
         </div>
-        <div>
+        <div className="channel-wrapper">
             {events.map(evt => <ShowCard showData={evt} />)}
         </div>
-    </article>
+    </article >
 }
 
 export default ChannelRow
