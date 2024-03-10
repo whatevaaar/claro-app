@@ -14,12 +14,29 @@ body {
 .topbar-row {
   display: flex;
   width: 100%;
-  height: 3rem;
+  overflow: hidden;
 }
+.topbar-today {
+  flex: 1;
+  display: flex;
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center;
+}
+
+.topbar-dates {
+  flex: 3;
+  display: flex;
+  justify-content: space-around;
+}
+.channels-container {
+  height: 70vh;
+  overflow: auto;
+}
+
 .channel-row {
   display: flex;
   width: 100%;
-  height: 100px;
+  height: auto;
 }
 
 .channel-header {
@@ -34,6 +51,11 @@ body {
   flex: 3; /* Esto no es necesario si estás usando display: grid */
   overflow: hidden;
   scroll-behavior: smooth;
+}
+.channel-logo {
+  display: flex;
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center;
 }
 
 .channel-logo > img {

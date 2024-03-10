@@ -12,7 +12,7 @@ const ChannelRow = ({ channelData }) => {
             </div>
         </div>
         <div className="channel-wrapper">
-            {events.map(evt => <ShowCard showData={evt} />)}
+            {events.map((evt, idx) => <ShowCard showData={evt} key={idx} />)}
         </div>
     </article >
 }

@@ -19,9 +19,9 @@ function App() {
   return (
     <>
       <TopBar />
-      <div>
-        {data.map((d) => (
-          <ChannelRow channelData={d} />
+      <div className="channels-container">
+        {data.map((d, idx) => (
+          <ChannelRow channelData={d} key={idx} />
         ))}
       </div>
     </>
