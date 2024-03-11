@@ -1,18 +1,17 @@
-import { useState } from "react";
-
+import { useContext } from "react";
+import PaginationContext from "../../controller/PaginationContext";
+import { HOURS_PER_PAGE, MAX_PAGINATION } from "../../constants/constants";
 const TopBar = () => {
     const startHour = 20;
-    const hoursPerPage = 3;
-    const maxPagination = 24 / hoursPerPage;
-    const [paginationIdx, setpaginationIdx] = useState(0);
+    const { paginationIdx, setpaginationIdx } = useContext(PaginationContext);
     const generateHourRange = (offset) => {
-        const sum = startHour + (hoursPerPage * paginationIdx) + offset;
+        const sum = startHour + (HOURS_PER_PAGE * paginationIdx) + offset;
         const hour = sum >= 24 ? sum - 24 : sum;
         return hour + ':00';
     }
 
     const handleNext = () => {
-        if (paginationIdx === maxPagination) {
+        if (paginationIdx === MAX_PAGINATION) {
             setpaginationIdx(0);
         }
         else setpaginationIdx(paginationIdx + 1);
@@ -20,12 +19,10 @@ const TopBar = () => {
 
     const handlePrev = () => {
         if (paginationIdx === 0) {
-            setpaginationIdx(maxPagination);
+            setpaginationIdx(MAX_PAGINATION);
         }
         else setpaginationIdx(paginationIdx - 1);
     }
-
-
 
     return <div className="topbar-row">
         <div className="topbar-today">Hoy</div>

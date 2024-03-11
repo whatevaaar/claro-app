@@ -1,7 +1,14 @@
-import ShowCard from "../ShowCard/ShowCard";
+import { HOURS_PER_PAGE, MAX_PAGINATION } from "../../constants/constants";
+import ShowsSection from "../ShowsSection/ShowsSection";
 
 const ChannelRow = ({ channelData }) => {
     const { name, id, image, events, number } = channelData;
+    const sections = [];
+    for (let index = 0; index < MAX_PAGINATION; index++) {
+        const sectionShows = events.slice(index * HOURS_PER_PAGE, HOURS_PER_PAGE + (HOURS_PER_PAGE * index))
+        const newSection = <ShowsSection sectionPaginationPostion={index} sectionShows={sectionShows} />
+        sections.push(newSection);
+    }
     return <article id={id} className="channel-row">
         <div className="channel-header">
             <div className="channel-number" >
@@ -12,7 +19,7 @@ const ChannelRow = ({ channelData }) => {
             </div>
         </div>
         <div className="channel-wrapper">
-            {events.map((evt, idx) => <ShowCard showData={evt} key={idx} />)}
+            {sections}
         </div>
     </article >
 }
