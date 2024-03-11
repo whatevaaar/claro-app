@@ -74,4 +74,5 @@ body {
 .show-card {
   border: solid;
   border-color: gainsboro;
+  flex: 1;
 }

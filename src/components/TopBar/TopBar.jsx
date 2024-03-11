@@ -11,16 +11,14 @@ const TopBar = () => {
     }
 
     const handleNext = () => {
-        if (paginationIdx === MAX_PAGINATION) {
+        if (paginationIdx === MAX_PAGINATION - 1)
             setpaginationIdx(0);
-        }
         else setpaginationIdx(paginationIdx + 1);
     }
 
     const handlePrev = () => {
-        if (paginationIdx === 0) {
+        if (paginationIdx === 0)
             setpaginationIdx(MAX_PAGINATION);
-        }
         else setpaginationIdx(paginationIdx - 1);
     }
 
@@ -29,7 +27,6 @@ const TopBar = () => {
         <div className="topbar-dates">
             <p>{generateHourRange(0)}</p>
             <p>{generateHourRange(1)}</p>
-
             <p>{generateHourRange(2)}</p>
         </div>
         <button onClick={handlePrev}>{"<"}</button>
