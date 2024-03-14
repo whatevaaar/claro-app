@@ -9,12 +9,30 @@ html {
 body {
   margin: 0;
   background-color: #000;
+  display: flex; /* Establece un diseño de flexbox */
+  flex-direction: column;
 }
-
+.info-banner {
+  height: 20vh;
+  padding-bottom: 3rem;
+}
+.topbar {
+  position: fixed; /* Fija el topbar en la parte superior de la ventana */
+  background-color: #000;
+  width: 100%;
+}
+.pagination-button {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 1.3rem;
+}
 .topbar-row {
   display: flex;
   width: 100%;
+  height: auto;
   overflow: hidden;
+  background-color: #000;
 }
 .topbar-today {
   flex: 1;
@@ -29,20 +47,23 @@ body {
   justify-content: space-around;
 }
 .channels-container {
-  height: 70vh;
-  overflow: auto;
+  overflow-y: auto;
+  margin-top: 60px;
 }
 
 .channel-row {
   display: flex;
   width: 100%;
   height: auto;
+  gap: 0;
 }
 
 .channel-header {
   flex: 1;
   display: grid;
-  grid-template-columns: 1fr 3fr; /* Dividir en dos columnas iguales */
+  grid-template-columns: 1fr 1fr; /* Dividir en dos columnas iguales */
+  background-color: #1a1a1a;
+  border: black solid;
 }
 .channel-wrapper {
   flex: 3; /* Esto no es necesario si estás usando display: grid */
@@ -66,6 +87,10 @@ body {
   align-items: center;
 }
 
+.channel-number > p {
+  font-size: 1.8rem;
+}
+
 .show-section {
   display: flex;
   flex-direction: row;
@@ -73,6 +98,15 @@ body {
 }
 .show-card {
   border: solid;
-  border-color: gainsboro;
-  flex: 1;
+  border-color: #3a3a3a;
+  flex: 1; /* Make the cards take up an equal amount of space */
+  display: flex;
+  flex-direction: column; /* Stack the card elements vertically */
+  justify-content: space-between;
+  background-color: #1a1a1a;
+  border-width: 0.07rem;
+}
+
+.show-card > * {
+  flex-grow: 1; /* Make each child element take up an equal amount of space */
 }

@@ -1,13 +1,20 @@
 import { useContext } from "react";
 import PaginationContext from "../../controller/PaginationContext";
 import { HOURS_PER_PAGE, MAX_PAGINATION } from "../../constants/constants";
+import InfoBanner from "../InfoBanner/InfoBanner";
+import SelectedShowContext from "../../controller/SelectedShowContext";
 const TopBar = () => {
     const startHour = 20;
     const { paginationIdx, setpaginationIdx } = useContext(PaginationContext);
+    const { selectedShow } = useContext(SelectedShowContext);
     const generateHourRange = (offset) => {
-        const sum = startHour + (HOURS_PER_PAGE * paginationIdx) + offset;
-        const hour = sum >= 24 ? sum - 24 : sum;
-        return hour + ':00';
+        let hour = startHour + (HOURS_PER_PAGE * paginationIdx) + offset;
+        let postfix = 'a.m';
+        if (hour >= 24) {
+            hour -= 24;
+            postfix = 'p.m'
+        }
+        return hour + ':00 ' + postfix;
     }
 
     const handleNext = () => {
@@ -22,15 +29,20 @@ const TopBar = () => {
         else setpaginationIdx(paginationIdx - 1);
     }
 
-    return <div className="topbar-row">
-        <div className="topbar-today">Hoy</div>
-        <div className="topbar-dates">
-            <p>{generateHourRange(0)}</p>
-            <p>{generateHourRange(1)}</p>
-            <p>{generateHourRange(2)}</p>
+    return <div className="topbar">
+        <div>
+            {selectedShow ? <InfoBanner /> : null}
         </div>
-        <button onClick={handlePrev}>{"<"}</button>
-        <button onClick={handleNext}>{">"}</button>
+        <div className="topbar-row">
+            <div className="topbar-today">Hoy</div>
+            <div className="topbar-dates">
+                <p>{generateHourRange(0)}</p>
+                <p>{generateHourRange(1)}</p>
+                <p>{generateHourRange(2)}</p>
+            </div>
+            <button className="pagination-button" onClick={handlePrev}>{"<"}</button>
+            <button className="pagination-button" onClick={handleNext}>{">"}</button>
+        </div>
     </div>
 }
 export default TopBar
