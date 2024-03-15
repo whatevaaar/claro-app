@@ -13,8 +13,13 @@ body {
   flex-direction: column;
 }
 .info-banner {
-  height: 20vh;
+  height: 40vh;
   padding-bottom: 3rem;
+}
+.info-banner-body {
+  h1 {
+    margin-bottom: 1em;
+  }
 }
 .topbar {
   position: fixed; /* Fija el topbar en la parte superior de la ventana */
@@ -64,6 +69,7 @@ body {
   grid-template-columns: 1fr 1fr; /* Dividir en dos columnas iguales */
   background-color: #1a1a1a;
   border: black solid;
+  border-width: 0.3em;
 }
 .channel-wrapper {
   flex: 3; /* Esto no es necesario si estás usando display: grid */

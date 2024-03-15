@@ -1,36 +1,37 @@
 import "./App.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import PaginationContext from "./controller/PaginationContext";
-import ChannelRow from "./components/ChannelRow/ChannelRow";
 import TopBar from "./components/TopBar/TopBar";
-import { API_URL } from "./constants/constants";
 import SelectedShowContext from "./controller/SelectedShowContext";
+import ChannelContainer from "./components/ChannelContainer/ChannelContainer";
+import HoverContext from "./controller/HoverContext";
 
 function App() {
-  const [data, setData] = useState([]);
-  const [paginationIdx, setpaginationIdx] = useState(0);
+  const [paginationIdx, setPaginationIdx] = useState(0);
   const [selectedShow, setSelectedShow] = useState(null);
-
-  useEffect(() => {
-    const dataFetch = async () => {
-      const fetchedData = await (await fetch(API_URL)).json();
-      setData(fetchedData.response.channels);
-    };
-    dataFetch();
-  }, []);
-
-  return (
-    <SelectedShowContext.Provider value={{ selectedShow, setSelectedShow }}>
-      <PaginationContext.Provider value={{ paginationIdx, setpaginationIdx }}>
-        <TopBar />
-        <div className="channels-container">
-          {data.map((d, idx) => (
-            <ChannelRow channelData={d} key={idx} />
-          ))}
-        </div>
-      </PaginationContext.Provider>
-    </SelectedShowContext.Provider>
-  );
+  const [isHoveringOnShow, setIsHoveringOnShow] = useState(false);
+  const [epgIsActive, setEpgIsActive] = useState(false);
+  const activateEPG = () => setEpgIsActive(true);
+  if (epgIsActive) {
+    return (
+      <SelectedShowContext.Provider value={{ selectedShow, setSelectedShow }}>
+        <PaginationContext.Provider value={{ paginationIdx, setPaginationIdx }}>
+          <HoverContext.Provider
+            value={{ isHoveringOnShow, setIsHoveringOnShow }}
+          >
+            <TopBar />
+            <ChannelContainer />
+          </HoverContext.Provider>
+        </PaginationContext.Provider>
+      </SelectedShowContext.Provider>
+    );
+  } else {
+    return (
+      <section>
+        <button onClick={activateEPG}>Activar</button>
+      </section>
+    );
+  }
 }
 
 export default App;
