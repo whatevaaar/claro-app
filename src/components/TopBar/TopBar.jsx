@@ -25,7 +25,7 @@ const TopBar = () => {
 
     const handlePrev = () => {
         if (paginationIdx === 0)
-            setpaginationIdx(MAX_PAGINATION);
+            setpaginationIdx(MAX_PAGINATION - 1);
         else setpaginationIdx(paginationIdx - 1);
     }
 
